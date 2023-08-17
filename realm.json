@@ -1,0 +1,62 @@
+{
+  "realm": "bfs-realm",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "resource-server",
+      "enabled": true,
+      "bearerOnly": false
+    },
+    {
+      "clientId": "test-cli",
+      "enabled": true,
+      "publicClient": true,
+      "directAccessGrantsEnabled": true
+    }
+  ],
+  "users" : [
+    {
+      "username" : "farhad",
+      "enabled": true,
+      "email" : "farhad@keycloak.org",
+      "firstName": "SM Farhad",
+      "lastName": "Ali",
+      "credentials" : [
+        { "type" : "password",
+          "value" : "bfsdev" }
+      ],
+      "realmRoles": [ "user", "offline_access"  ],
+      "clientRoles": {
+        "account": [ "manage-account" ]
+      }
+    },
+    {
+      "username" : "admin",
+      "enabled": true,
+      "email" : "test@admin.org",
+      "firstName": "Admin",
+      "lastName": "Test",
+      "credentials" : [
+        { "type" : "password",
+          "value" : "admin" }
+      ],
+      "realmRoles": [ "user","admin" ],
+      "clientRoles": {
+        "realm-management": [ "realm-admin" ],
+        "account": [ "manage-account" ]
+      }
+    }
+  ],
+  "roles" : {
+    "realm" : [
+      {
+        "name": "user",
+        "description": "User privileges"
+      },
+      {
+        "name": "admin",
+        "description": "Administrator privileges"
+      }
+    ]
+  }
+}
