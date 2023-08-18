@@ -26,6 +26,18 @@ services:
       - "3000:3000"
     networks:
       - auth-network
+  nginx:
+    image: nginx:latest
+    container_name: nginx_container
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d
+    depends_on:
+      - keycloak
+      - backend
+    networks:
+      - auth-network
 
 networks:
   auth-network:

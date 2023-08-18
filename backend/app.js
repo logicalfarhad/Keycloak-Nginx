@@ -12,7 +12,7 @@ const keycloakConfig = {
   'ssl-required': 'external',
   resource: 'resource-server'
 };
-
+//keycloak.protect
 const keycloak = new Keycloak({ scope: 'openid' }, keycloakConfig);
 
 app.use(keycloak.middleware());
@@ -22,6 +22,7 @@ app.get('/public', (req, res) => {
 });
 
 app.get('/user', keycloak.protect('realm:user'), (req, res) => {
+  console.log(req.headers.authorization);
   res.json({ message: 'secured' });
 });
 
@@ -30,7 +31,8 @@ app.get('/admin', keycloak.protect('realm:admin'), (req, res) => {
 });
 
 app.use('*', (req, res) => {
-  res.send('Not found!');
+  console.log(req.headers.authorization)
+  res.send('No route has been hurt!');
 });
 
 app.listen(port, () => {
