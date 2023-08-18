@@ -8,8 +8,6 @@
 /backend/logs
 /backend/*.log
 
-# Nginx
-/nginx/*.conf
 
 # Environment variables
 /backend/.env
